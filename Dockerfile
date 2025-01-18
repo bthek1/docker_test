@@ -31,17 +31,17 @@ USER devuser
 # Set the working directory
 WORKDIR /home/devuser/app
 
+
 # Install Poetry
 RUN curl -sSL https://install.python-poetry.org | python3
 
-RUN poetry config virtualenvs.create false
 # Add Poetry to PATH
 ENV PATH="/home/devuser/.local/bin:$PATH"
 
+RUN poetry config virtualenvs.create false
+
 # Enable direnv by adding configuration to .bashrc
 RUN echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
-
-
 
 # Expose a default port
 EXPOSE 8000
