@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        USER_PASSWORD: ${USER_PASSWORD}
+    container_name: ubuntu_dev_container
+    ports:
+      - "8000:8000"  # Expose this if your app uses it
+    volumes:
+      - .:/home/devuser/app # Mount the app folder for live development
+    environment:
+      - ENV_FILE=.env
+    stdin_open: true  # Keep the container open
+    tty: true         # Allocate a pseudo-TTY
